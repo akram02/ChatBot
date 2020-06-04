@@ -73,6 +73,18 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.goldrenard</groupId>
+            <artifactId>ab</artifactId>
+            <version>1.0.7</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.vaadin.artur</groupId>
+            <artifactId>avataaar</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.vaadin</groupId>
             <!-- Replace artifactId with vaadin-core to use only free components -->
             <artifactId>vaadin</artifactId>
