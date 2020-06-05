@@ -1,26 +1,24 @@
 package com.example.application.views.main;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
+import com.example.application.views.chat.ChatView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
-import com.vaadin.flow.component.dependency.JsModule;
-import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
+import com.vaadin.flow.component.dependency.JsModule;
+import com.vaadin.flow.component.page.Push;
 import com.vaadin.flow.component.tabs.Tab;
-import com.vaadin.flow.component.tabs.TabVariant;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.component.tabs.TabsVariant;
 import com.vaadin.flow.router.RouteConfiguration;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.PWA;
-import com.vaadin.flow.theme.Theme;import com.vaadin.flow.theme.lumo.Lumo;
+import com.vaadin.flow.theme.Theme;
+import com.vaadin.flow.theme.lumo.Lumo;
 
-import com.example.application.views.main.MainView;
-import com.example.application.views.chat.ChatView;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * The main view is a top-level placeholder for other views.
@@ -28,6 +26,7 @@ import com.example.application.views.chat.ChatView;
 @JsModule("./styles/shared-styles.js")
 @PWA(name = "Chat", shortName = "Chat")
 @Theme(value = Lumo.class, variant = Lumo.LIGHT)
+@Push
 public class MainView extends AppLayout {
 
     private final Tabs menu;
