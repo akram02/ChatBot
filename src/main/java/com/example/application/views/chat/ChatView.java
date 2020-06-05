@@ -1,5 +1,6 @@
 package com.example.application.views.chat;
 
+import com.example.application.ChatService;
 import com.example.application.MessageList;
 import com.example.application.views.main.MainView;
 import com.vaadin.flow.component.Key;
@@ -37,15 +38,19 @@ public class ChatView extends VerticalLayout {
     private final TextField message = new TextField();
     private final Chat chatSession;
     private final ScheduledExecutorService executorService;
+    private final ChatService chatService;
 
-    public ChatView(Bot alice, ScheduledExecutorService executorService) {
+    public ChatView(Bot alice, ScheduledExecutorService executorService, ChatService chatService) {
         this.executorService = executorService;
         ui = UI.getCurrent();
+        this.chatService = chatService;
         chatSession = new Chat(alice);
 
         message.setPlaceholder("Enter a message...");
         message.setSizeFull();
 
+        message.setValue("Hi");
+        sendMessage();
         Button send = new Button(VaadinIcon.ENTER.create(), event -> sendMessage());
         send.addClickShortcut(Key.ENTER);
 
@@ -64,7 +69,11 @@ public class ChatView extends VerticalLayout {
 
         executorService.schedule(() -> {
             String answer = chatSession.multisentenceRespond(text);
-            ui.access(() -> messageList.addMessage("Alice", new Avataaar("Alice2"), answer, false));
+            ui.access(() -> {
+                        messageList.addMessage("Alice", new Avataaar("Alice2"), answer, false);
+                        message.setValue(chatService.answer(message.getValue()));
+                    }
+            );
         }, new Random().ints(1000, 3000).findFirst().getAsInt(), TimeUnit.MILLISECONDS);
     }
 
